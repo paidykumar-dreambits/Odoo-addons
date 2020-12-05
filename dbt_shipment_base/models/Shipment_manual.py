@@ -1,12 +1,13 @@
-#/usr/bin/env python
+# /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api, _
+from odoo import models, fields, _
 from odoo.exceptions import UserError
 from datetime import datetime
 import logging
 
 _logger = logging.getLogger(__name__)
+
 
 class ManualShipmentTransporter(models.Model):
     _inherit = "dbt.shipment.transporter"
