@@ -75,7 +75,6 @@ class Shipment(models.Model):
         return super(Shipment,  self).create(vals)
 
     @api.model
-    @api.multi
     def name_get(self):
         _logger.info("Inside name_get fn")
         result = []
@@ -134,13 +133,13 @@ class CustomSaleOrder(models.Model):
 
         return name_list
 
-    @api.multi
+    # @api.multi
     def action_confirm(self):
         res = super(CustomSaleOrder, self).action_confirm()
         self.create_shipment()
         return res
 
-    @api.multi
+    # @api.multi
     def write(self, vals):
         res = super(CustomSaleOrder, self).write(vals)
 
@@ -206,15 +205,17 @@ class CustomSaleOrder(models.Model):
 
 class CustomStockPicking(models.Model):
     _inherit = 'stock.picking'
+
     associated_shipment = fields.Many2one('dbt.shipment', 'Shipment')
 
-    @api.multi
+
     def action_done(self):
         prev = super(CustomStockPicking, self).action_done()
         _logger.info("We are now inside stock picking")
 
         company = self.env['res.company']._company_default_get('stock.picking')
-        picking_type = company.shipment_picking_type_id.id
+        picking_type = company.shippment_picking_type_id.id
+        _logger.info("picking_type-> {0}".format(picking_type))
 
         if self.picking_type_id.id == picking_type:
             transporter = self.associated_shipment.transporter
@@ -246,7 +247,7 @@ class CustomStockPicking(models.Model):
                     output_function(self.associated_shipment)
         return prev
 
-    @api.multi
+    # @api.multi
     def write(self, vals):
         _logger.info("inside stock picking write")
         _logger.info(self)
@@ -264,7 +265,7 @@ class CustomStockPicking(models.Model):
                 _logger.info(rec.state)
 
                 company = self.env['res.company']._company_default_get('stock.picking')
-                picking_type = company.shipment_picking_type_id.id
+                picking_type = company.shippment_picking_type_id.id
                 _logger.info("picking_type-> {0}".format(picking_type))
                 # when the packing stock.picking is available then state should
                 # be changed to 'ready'
