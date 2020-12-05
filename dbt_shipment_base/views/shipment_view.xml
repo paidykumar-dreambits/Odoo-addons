@@ -5,7 +5,10 @@
         <field name="name">Shipments</field>
         <field name="res_model">dbt.shipment</field>
         <field name="type">ir.actions.act_window</field>
+<<<<<<< HEAD
         <!--<field name="view_type">form</field>-->
+=======
+>>>>>>> 93d415eebecb2b9e189e98d9888143c6b801cced
         <field name="view_mode">tree,form</field>
     </record>
 

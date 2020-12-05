@@ -133,13 +133,19 @@ class CustomSaleOrder(models.Model):
 
         return name_list
 
+<<<<<<< HEAD
     # @api.multi
+=======
+>>>>>>> 93d415eebecb2b9e189e98d9888143c6b801cced
     def action_confirm(self):
         res = super(CustomSaleOrder, self).action_confirm()
         self.create_shipment()
         return res
 
+<<<<<<< HEAD
     # @api.multi
+=======
+>>>>>>> 93d415eebecb2b9e189e98d9888143c6b801cced
     def write(self, vals):
         res = super(CustomSaleOrder, self).write(vals)
 
@@ -208,7 +214,10 @@ class CustomStockPicking(models.Model):
 
     associated_shipment = fields.Many2one('dbt.shipment', 'Shipment')
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 93d415eebecb2b9e189e98d9888143c6b801cced
     def action_done(self):
         prev = super(CustomStockPicking, self).action_done()
         _logger.info("We are now inside stock picking")
@@ -247,7 +256,10 @@ class CustomStockPicking(models.Model):
                     output_function(self.associated_shipment)
         return prev
 
+<<<<<<< HEAD
     # @api.multi
+=======
+>>>>>>> 93d415eebecb2b9e189e98d9888143c6b801cced
     def write(self, vals):
         _logger.info("inside stock picking write")
         _logger.info(self)
